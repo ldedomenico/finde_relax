@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan No Secreto · 19 & 20 SEP</title>
+<style>
+  :root {
+    --bg: #fff8f3;
+    --card: rgba(255, 255, 255, 0.75);
+    --ink: #29232a;
+    --muted: #6b626a;
+    --pink: #ff6f91;
+    --rose: #ff9fba;
+    --purple: #9b7ede;
+    --green: #74b49b;
+    --yellow: #ffd166;
+    --blue: #79b8ff;
+    --shadow: 0 20px 40px -10px rgba(65, 40, 55, 0.12);
+    --radius: 28px;
+    --glass-border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: 
+      radial-gradient(circle at 15% 50%, rgba(255, 217, 228, 0.8) 0%, transparent 45%),
+      radial-gradient(circle at 85% 20%, rgba(229, 221, 255, 0.8) 0%, transparent 40%),
+      radial-gradient(circle at 50% 90%, rgba(217, 244, 233, 0.8) 0%, transparent 50%),
+      var(--bg);
+    background-attachment: fixed;
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  .wrap {
+    width: min(1080px, 92%);
+    margin: auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    padding-top: 30px;
+    position: relative;
+    z-index: 20;
+  }
+
+  .tab {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border: var(--glass-border);
+    padding: 12px 22px;
+    border-radius: 999px;
+    color: var(--muted);
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .tab:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+  }
+
+  .tab.active {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+    box-shadow: 0 10px 25px rgba(41, 35, 42, 0.25);
+  }
+
+  header {
+    padding: 60px 0 35px;
+    text-align: center;
+  }
+
+  .stamp {
+    display: inline-block;
+    padding: 8px 18px;
+    border: 2px dashed var(--pink);
+    border-radius: 999px;
+    background: #fff;
+    color: #d94f73;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transform: rotate(-2deg);
+    box-shadow: 0 8px 20px rgba(217, 79, 115, 0.15);
+    transition: transform 0.3s;
+    user-select: none;
+    cursor: pointer;
+  }
+  
+  .stamp:hover {
+    transform: rotate(0deg) scale(1.05);
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    margin: 28px auto 16px;
+    max-width: 900px;
+    letter-spacing: -0.04em;
+    font-weight: 900;
+  }
+
+  h1 span {
+    color: var(--pink);
+    display: block;
+    margin-top: 5px;
+  }
+
+  .subtitle {
+    max-width: 750px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 1.15rem;
+    font-weight: 500;
+  }
+
+  .confession-btn {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 8px 18px;
+    border: var(--glass-border);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    color: var(--muted);
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .confession-btn:hover {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--ink);
+    transform: translateY(-2px);
+  }
+
+  .confession-msg {
+    max-width: 620px;
+    margin: 0 auto;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-style: italic;
+    transition: all 0.4s ease;
+  }
+
+  .confession-msg.show {
+    max-height: 120px;
+    opacity: 1;
+    margin-top: 14px;
+    animation: confessionPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  @keyframes confessionPop {
+    0% { transform: scale(0.85) translateY(-8px); }
+    60% { transform: scale(1.03); }
+    100% { transform: scale(1) translateY(0); }
+  }
+
+  .days-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+    margin: 10px 0 35px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  }
+
+  .days-label {
+    font-weight: 900;
+    font-size: 0.95rem;
+    color: var(--ink);
+    white-space: nowrap;
+    min-width: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .timer {
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    color: var(--pink);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+
+  .decision-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .decision-modal.show {
+    display: flex;
+  }
+
+  .decision-content {
+    background: white;
+    padding: 40px;
+    border-radius: 28px;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+
+  @keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .decision-content h2 {
+    font-size: 2rem;
+    margin: 0 0 20px;
+    color: var(--ink);
+  }
+
+  .decision-content p {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin: 0 0 30px;
+    line-height: 1.6;
+  }
+
+  .decision-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .decision-buttons button {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 16px;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  #acceptBtn {
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    color: white;
+    flex: 1;
+  }
+
+  #acceptBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 111, 145, 0.3);
+  }
+
+  #rejectBtn {
+    background: #f0f0f0;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  #rejectBtn:hover {
+    background: #e8e8e8;
+  }
+
+  .si-a-todo {
+    display: none;
+    font-size: 2.6rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin: 10px 0 20px;
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+
+  .si-a-todo.show {
+    display: block;
+  }
+
+  #rejectBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #f0f0f0;
+  }
+
+  .suggestions-section {
+    max-width: 850px;
+    margin: 60px auto 50px;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(255, 111, 145, 0.1), rgba(155, 126, 222, 0.1));
+    border: 2px dashed var(--pink);
+    border-radius: 24px;
+    text-align: center;
+  }
+
+  .suggestions-section h3 {
+    font-size: 1.5rem;
+    color: var(--ink);
+    margin: 0 0 15px;
+  }
+
+  .suggestions-section p {
+    color: var(--muted);
+    font-size: 1rem;
+    margin: 0 0 20px;
+  }
+
+  .suggestions-section a {
+    display: inline-block;
+    padding: 12px 32px;
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    color: white;
+    text-decoration: none;
+    border-radius: 16px;
+    font-weight: 800;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .suggestions-section a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 111, 145, 0.3);
+  }
+
+  .suggestions-fineprint {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-style: italic;
+    margin: -8px 0 20px !important;
+  }
+
+  .bg-blobs {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.35;
+    animation: blobMove 26s ease-in-out infinite;
+  }
+
+  .blob:nth-child(1) {
+    width: 380px; height: 380px;
+    background: var(--rose);
+    top: -10%; left: -5%;
+  }
+
+  .blob:nth-child(2) {
+    width: 420px; height: 420px;
+    background: var(--purple);
+    top: 40%; right: -10%;
+    animation-duration: 30s;
+    animation-delay: -6s;
+  }
+
+  .blob:nth-child(3) {
+    width: 320px; height: 320px;
+    background: var(--green);
+    bottom: -10%; left: 30%;
+    animation-duration: 24s;
+    animation-delay: -12s;
+  }
+
+  @keyframes blobMove {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(6%, 8%) scale(1.1); }
+    66% { transform: translate(-5%, -6%) scale(0.95); }
+  }
+
+  .sparkle {
+    position: fixed;
+    bottom: -20px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    animation: sparkleUp linear forwards;
+  }
+
+  @keyframes sparkleUp {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.5; }
+    100% { transform: translateY(-105vh) translateX(var(--drift, 20px)); opacity: 0; }
+  }
+
+  .days-progress {
+    flex: 1;
+    height: 16px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 99px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+  }
+
+  .days-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--pink), var(--rose), var(--purple));
+    border-radius: 99px;
+    transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .dashboard {
+    position: sticky;
+    top: 20px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 24px;
+    margin: 10px 0 35px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  }
+
+  .progress {
+    flex: 1;
+    height: 14px;
+    background: rgba(0,0,0,0.05);
+    border-radius: 99px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+  }
+
+  .bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--pink), var(--purple), var(--green));
+    border-radius: 99px;
+    transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .count {
+    font-weight: 900;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+
+  button#reset {
+    border: 0;
+    border-radius: 14px;
+    padding: 10px 18px;
+    font-weight: 800;
+    cursor: pointer;
+    color: #b34e70;
+    background: #ffe6ed;
+    transition: all 0.2s;
+  }
+
+  button#reset:hover {
+    transform: translateY(-2px);
+    background: #ffd6e1;
+    box-shadow: 0 8px 15px rgba(255, 111, 145, 0.2);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 24px;
+    padding-bottom: 24px;
+  }
+
+  .card {
+    background: var(--card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: var(--glass-border);
+    border-top: 5px solid transparent;
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px -15px rgba(65, 40, 55, 0.15);
+  }
+
+  .card.full {
+    grid-column: 1 / -1;
+  }
+
+  .card.cat-basics { border-top-color: var(--pink); }
+  .card.cat-priority { border-top-color: var(--purple); }
+  .card.cat-extras { border-top-color: var(--green); }
+  .card.cat-mandatory { border-top-color: #ff4d6d; background: linear-gradient(180deg, rgba(255, 77, 109, 0.08), var(--card) 70px); }
+  .card.cat-optional { border-top-style: dashed; border-top-color: var(--blue); }
+
+  .card h2 {
+    margin: 0 0 20px;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .card-counter {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--muted);
+    background: rgba(0, 0, 0, 0.05);
+    padding: 4px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    margin: 10px 0;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.25s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .item::before {
+    content: "";
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+    pointer-events: none;
+  }
+
+  .item:hover::before {
+    left: 100%;
+  }
+
+  .item:hover {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    transform: translateX(4px) scale(1.01);
+  }
+
+  .item.done {
+    background: rgba(245, 241, 243, 0.6);
+    border-color: transparent;
+    color: #91878e;
+  }
+
+  .item.done .text {
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--pink);
+    opacity: 0.7;
+  }
+
+  input[type=checkbox] {
+    appearance: none;
+    width: 26px;
+    height: 26px;
+    flex: 0 0 26px;
+    margin: 2px 0 0;
+    border: 2px solid #cbbfc7;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  input[type=checkbox]:hover {
+    border-color: var(--pink);
+  }
+
+  input[type=checkbox]:active {
+    transform: scale(0.8);
+  }
+
+  input[type=checkbox]:checked {
+    border-color: var(--pink);
+    background: var(--pink);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 111, 145, 0.3);
+  }
+
+  input[type=checkbox]:checked::after {
+    content: "✓";
+    position: absolute;
+    color: #fff;
+    font-weight: 900;
+    font-size: 18px;
+    left: 4px;
+    top: -1px;
+    animation: checkIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+
+  @keyframes checkIn {
+    0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+
+  .text {
+    line-height: 1.5;
+    font-weight: 500;
+  }
+
+  .text-muted {
+    color: var(--muted);
+    font-size: 0.95em;
+  }
+
+  .final {
+    margin: 20px 0 60px;
+    padding: 40px;
+    border-radius: 32px;
+    color: #fff;
+    background: linear-gradient(135deg, #332a36, #57465b);
+    box-shadow: 0 20px 40px rgba(51, 42, 54, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final:after {
+    content: "19 • 20 • 24h • CABA";
+    position: absolute;
+    right: -20px;
+    bottom: 10px;
+    font-size: 4rem;
+    font-weight: 1000;
+    opacity: 0.05;
+    transform: rotate(-6deg);
+    pointer-events: none;
+  }
+
+  .final h2 {
+    margin-top: 0;
+    font-size: 1.6rem;
+    letter-spacing: -0.02em;
+    color: #ffd6e1;
+  }
+
+  .final strong {
+    color: #ff9fba;
+    font-weight: 800;
+  }
+  
+  .final em {
+    color: #ffd6e1;
+    font-style: normal;
+    font-weight: 800;
+  }
+
+  .final p {
+    font-size: 1.1rem;
+  }
+
+  .secret {
+    margin-top: 30px;
+    padding: 24px;
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    color: #e2dce2;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    background: rgba(0,0,0,0.15);
+  }
+
+  .secret-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .secret button {
+    margin-top: 0;
+    background: #fff;
+    color: #3b303c;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .secret button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  .secret-msg {
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    color: #ffd6e1;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.4s ease;
+  }
+
+  .secret-msg.show {
+    margin-top: 16px;
+    max-height: 60px;
+    opacity: 1;
+  }
+
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translate(-50%, 20px) scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    background: var(--ink);
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 99px;
+    font-weight: 600;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 50;
+    max-width: 90vw;
+    text-align: center;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    padding: 0 0 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .confetti {
+    position: fixed;
+    top: -20px;
+    width: 10px;
+    height: 18px;
+    border-radius: 4px;
+    z-index: 100;
+    animation: fall 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* Cronograma */
+  .schedule-tab {
+    padding: 10px 0 60px;
+  }
+
+  .schedule-hero {
+    text-align: center;
+    margin: 20px auto 40px;
+    max-width: 780px;
+  }
+
+  .schedule-hero h2 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin: 24px 0 10px;
+    letter-spacing: -0.05em;
+  }
+
+  .timeline {
+    max-width: 850px;
+    margin: auto;
+    position: relative;
+    padding: 20px 0;
+  }
+
+  .timeline:before {
+    content: "";
+    position: absolute;
+    left: 108px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--pink), var(--purple), var(--green));
+    border-radius: 5px;
+  }
+
+  .time-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 40px;
+    position: relative;
+    margin: 0 0 24px;
+    align-items: start;
+  }
+
+  .time-item:after {
+    content: "";
+    position: absolute;
+    left: 100px;
+    top: 24px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    border: 5px solid var(--pink);
+    box-sizing: border-box;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.8);
+    transition: transform 0.3s;
+  }
+
+  .time-item:hover:after {
+    transform: scale(1.3);
+    border-color: var(--purple);
+  }
+
+  .time-item time {
+    text-align: right;
+    font-weight: 900;
+    color: #b34e70;
+    padding-top: 15px;
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+
+  .time-item > div {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: var(--glass-border);
+    box-shadow: var(--shadow);
+    border-radius: 24px;
+    padding: 22px 26px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .time-item > div:hover {
+    transform: translateX(8px) translateY(-2px);
+    box-shadow: 0 15px 30px rgba(65, 40, 55, 0.1);
+  }
+
+  .time-item h3 {
+    margin: 0 0 8px;
+    font-size: 1.15rem;
+    color: var(--ink);
+  }
+
+  .time-item p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  .midnight > div {
+    background: linear-gradient(135deg, #332a36, #48394a);
+    color: #fff;
+    border-color: #5a4b5d;
+    cursor: pointer;
+  }
+
+  .midnight > div h3 { color: #fff; }
+  .midnight p { color: #d7ced8; }
+  
+  .midnight:after { border-color: #332a36; }
+
+  .nextday > div {
+    background: rgba(238, 248, 244, 0.9);
+    border-color: rgba(116, 180, 155, 0.3);
+  }
+  
+  .nextday:after { border-color: var(--green); }
+
+  .schedule-final {
+    max-width: 850px;
+    margin: 40px auto 0;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: var(--glass-border);
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    line-height: 1.7;
+  }
+
+  .schedule-final strong { color: #b34e70; font-weight: 900;}
+  
+  .fineprint {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 0;
+    margin-top: 15px;
+    font-style: italic;
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  @media(max-width: 760px) {
+    .grid { grid-template-columns: 1fr; }
+    .card.full { grid-column: auto; }
+    .dashboard { flex-wrap: wrap; padding: 16px; gap: 12px; }
+    .progress { flex-basis: 100%; order: 3; }
+    header { padding-top: 40px; }
+    h1 { font-size: 2.2rem; }
+    
+    .timeline:before { left: 24px; }
+    .time-item { grid-template-columns: 1fr; gap: 8px; padding-left: 54px; margin-bottom: 30px;}
+    .time-item:after { left: 16px; top: 0px;}
+    .time-item time { text-align: left; padding-top: 0; margin-bottom: 5px; font-size: 1.05rem;}
+  }
+
+  @media(max-width: 600px) {
+    .tabs { padding-top: 16px; }
+    .tab { flex: 1; padding: 10px 12px; font-size: 0.82rem; }
+    .days-bar { flex-wrap: wrap; padding: 14px 16px; gap: 10px; }
+    .days-label { font-size: 0.85rem; }
+    .card { padding: 22px; }
+    .card h2 { font-size: 1.15rem; }
+    .final { padding: 28px; }
+    .secret { padding: 18px; }
+    .secret-buttons { flex-direction: column; }
+    .secret-buttons button { width: 100%; }
+    .decision-content { padding: 28px; margin: 0 16px; }
+    .decision-content h2 { font-size: 1.6rem; }
+    .si-a-todo { font-size: 2rem; }
+    .suggestions-section { padding: 28px; margin: 40px auto 30px; }
+    .schedule-final { padding: 24px; }
+    .toast { max-width: 85vw; font-size: 0.88rem; padding: 12px 18px; }
+    .timer { font-size: 0.8rem; }
+  }
+
+  @media(max-width: 400px) {
+    h1 { font-size: 1.8rem; }
+    .subtitle { font-size: 1rem; }
+    .tab { font-size: 0.75rem; padding: 8px 10px; }
+    .grid { gap: 16px; }
+    .card h2 { font-size: 1.05rem; flex-wrap: wrap; gap: 6px; }
+    .card-counter { font-size: 0.72rem; padding: 3px 10px; }
+  }
+
+  @media(max-width: 600px) {
+    .tabs { padding-top: 16px; }
+    .tab { flex: 1; padding: 10px 12px; font-size: 0.82rem; }
+    .days-bar { flex-wrap: wrap; padding: 14px 16px; gap: 10px; }
+    .days-label { font-size: 0.85rem; }
+    .card { padding: 22px; }
+    .card h2 { font-size: 1.15rem; }
+    .final { padding: 28px; }
+    .secret { padding: 18px; }
+    .secret-buttons { flex-direction: column; }
+    .secret-buttons button { width: 100%; }
+    .decision-content { padding: 28px; margin: 0 16px; }
+    .decision-content h2 { font-size: 1.6rem; }
+    .si-a-todo { font-size: 2rem; }
+    .suggestions-section { padding: 28px; margin: 40px auto 30px; }
+    .schedule-final { padding: 24px; }
+    .toast { max-width: 85vw; font-size: 0.88rem; padding: 12px 18px; }
+    .timer { font-size: 0.8rem; }
+  }
+
+  @media(max-width: 400px) {
+    h1 { font-size: 1.8rem; }
+    .subtitle { font-size: 1rem; }
+    .tab { font-size: 0.75rem; padding: 8px 10px; }
+    .grid { gap: 16px; }
+    .card h2 { font-size: 1.05rem; flex-wrap: wrap; gap: 6px; }
+    .card-counter { font-size: 0.72rem; padding: 3px 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-blobs"><div class="blob"></div><div class="blob"></div><div class="blob"></div></div>
+<div class="wrap">
+  <nav class="tabs">
+    <button class="tab active" data-tab="lista">📋 Lista oficial</button>
+    <button class="tab" data-tab="cronograma">🕐 Cronograma oficial</button>
+  </nav>
+  
+  <header id="mainHeader">
+    <div class="stamp" id="headerStamp">📋 LISTA OFICIAL DE ELEMENTOS</div>
+    <h1 id="headerTitle">PLAN NO SECRETO<br><span>19 y 20 DE SEP</span> ⭐</h1>
+    <p class="subtitle" id="headerSubtitle">
+      (documento de extrema importancia y bajo ningún concepto exageradamente elaborado)
+    </p>
+    <button class="confession-btn" id="confessionBtn">Ver más</button>
+    <p class="confession-msg" id="confessionMsg">(si Zaira, estoy probando una nueva AI del trabajo para hacer esto, espero sepas disculpar con las cosas con las que me divierto)</p>
+  </header>
+
+  <div class="days-bar" id="daysBar">
+    <div class="days-label" id="daysLabel">
+      <span>⏰ Faltan</span>
+      <span class="timer" id="timer">00d 00h 00m 00s</span>
+    </div>
+    <div class="days-progress"><div class="days-fill" id="daysFill"></div></div>
+  </div>
+
+  <div class="dashboard" id="dashboard">
+    <div class="count"><span id="done">0</span>/<span id="total">0</span> listos</div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+    <button id="reset">Reiniciar</button>
+  </div>
+
+  <main class="grid" id="mainContent">
+    <section class="card cat-basics">
+      <h2><span>👟 INDUMENTARIA ESENCIAL</span><span class="card-counter" data-counter>0/0</span></h2>
+      <label class="item"><input type="checkbox"><span class="text">Crocs verdes (especiales, como vos) 🐊</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Bikini/malla <span class="text-muted">(hot, requisito no negociable)</span></span></label>
+      <label class="item"><input type="checkbox"><span class="text">Ropa chill para existir cómodamente</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Ropa para dormir <span class="text-muted">(muy opcional la verdad)</span></span></label>
+      <label class="item"><input type="checkbox"><span class="text">Vestido / ropa para una cena <span class="text-muted">(sexy x2)</span></span></label>
+      <label class="item"><input type="checkbox"><span class="text">Medias de gatito 🐱 <span class="text-muted">(cute, prioridad alta)</span></span></label>
+      <label class="item"><input type="checkbox"><span class="text">Collar de luna 🌙 <span class="text-muted">(porque la luna tiene la costumbre de hacer especial una noche común)</span></span></label>
+    </section>
+
+    <section class="card cat-priority">
+      <h2><span>🌸 ELEMENTOS PARTICULARMENTE IMPORTANTES</span><span class="card-counter" data-counter>0/0</span></h2>
+      <label class="item"><input type="checkbox"><span class="text">Tu perfume de verano que busco en todas las flores</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Uñas: manos y pies 💅</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Pintalabios 💋 <span class="text-muted">(por si tus besos no eran ya suficientemente peligrosos)</span></span></label>
+      <label class="item"><input type="checkbox"><span class="text">Ropa interior x2 <span class="text-muted">(se aceptan sorpresas y decisiones creativas)</span></span></label>
+    </section>
+
+    <section class="card cat-extras">
+      <h2><span>🧴 EXTRAS DE SUPERVIVENCIA</span><span class="card-counter" data-counter>0/0</span></h2>
+      <label class="item"><input type="checkbox"><span class="text">Crema, cepillo de dientes, desodorante, peine, toalla mini, gomitas de pelo <span class="text-muted">(por si no copa lo de allá)</span></span></label>
+      <label class="item"><input type="checkbox"><span class="text">0 timidez y 0 inseguridades</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Ganas de comer (de todo)</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Ganas de relajarse, disfrutar y divertirse</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Actitud de persona que no tiene absolutamente nada que hacer durante 24 horas</span></label>
+    </section>
+
+    <section class="card cat-mandatory">
+      <h2><span>🚨 OBLIGATORIO — NO OLVIDAR BAJO NINGÚN CONCEPTO</span><span class="card-counter" data-counter>0/0</span></h2>
+      <label class="item"><input type="checkbox"><span class="text">DNI</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Celular</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Cargador</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Bolsa plástica <span class="text-muted">(no voy a explicar por qué, simplemente confiá)</span></span></label>
+    </section>
+
+    <section class="card full cat-optional">
+      <h2><span>🧳 OPCIONAL — NO HACE FALTA PERO QUIÉN SABE</span><span class="card-counter" data-counter>0/0</span></h2>
+      <div class="grid" style="padding:0; gap:16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <label class="item"><input type="checkbox"><span class="text">Campera <span class="text-muted">(por si nos da frío)</span></span></label>
+        <label class="item"><input type="checkbox"><span class="text">Un pasatiempo/hobby que entre en un bolso</span></label>
+        <label class="item"><input type="checkbox"><span class="text">Botellita de agua</span></label>
+        <label class="item"><input type="checkbox"><span class="text">Ojotas</span></label>
+        <label class="item"><input type="checkbox"><span class="text">Auriculares</span></label>
+        <label class="item"><input type="checkbox"><span class="text">Rímel</span></label>
+        <label class="item"><input type="checkbox"><span class="text">Botas hot 👠 o zapas <span class="text-muted">(aunque todos queremos escuchar esos tacos sonar, es solo para la cena)</span></span></label>
+        <label class="item"><input type="checkbox"><span class="text">Ropa de vóley <span class="text-muted">(viste, yo no me rindo fácil)</span></span></label>
+      </div>
+    </section>
+  </main>
+
+  <section class="final" id="finalSection">
+    <h2>📌 ACLARACIÓN FINAL DEL COMITÉ ORGANIZADOR</h2>
+    <p>La lista podrá sufrir modificaciones de último momento.</p>
+    <p>Pero <strong>la persona invitada es un elemento obligatorio. Su prioridad absoluta es <em>venir</em>.</strong> El resto es secundario.</p>
+    <p>Muchas gracias por su colaboración. �</p>
+    <div class="secret">
+      <strong>Atte.</strong><br>
+      <em>Vicepresidencia de Planes No-Peligrosos™</em><br>
+      Presupuesto limitado, planificación cuestionable, cero capacidad de improvisación y especialistas en hacer listas innecesariamente largas para ir un finde a un hotel de CABA con spa, sauna, jacuzzi y pileta.
+      <br>
+      <div class="secret-buttons">
+        <button id="bagBtn">👜 Investigar bolsa plástica</button>
+        <button id="underwearBtn">👙 Investigar ropa interior creativa</button>
+        <button id="foodBtn">🍔 Investigar ganas de comer de todo</button>
+      </div>
+      <p class="secret-msg" id="bagSecretMsg"></p>
+      <p class="secret-msg" id="underwearMsg"></p>
+      <p class="secret-msg" id="foodMsg"></p>
+    </div>
+  </section>
+
+  <section id="cronograma" class="schedule-tab" hidden>
+    <div class="schedule-hero">
+      <div class="stamp">CRONOGRAMA OFICIAL</div>
+    </div>
+
+    <div class="timeline">
+      <article class="time-item"><time>13:00 pm</time><div><h3>Paso a buscarte.</h3><p>Podés ser impuntual, siempre te voy a esperar (pero).</p></div></article>
+      <article class="time-item"><time>13:45 pm</time><div><h3>Almuerzo.</h3><p>Porque no podemos empezar la jornada sin comer.</p></div></article>
+      <article class="time-item"><time>15:00 pm</time><div><h3>Entrada al sector.</h3><p>Quedan suspendidas todas las responsabilidades.</p></div></article>
+      <article class="time-item"><time>17:30 pm</time><div><h3>Pileta climatizada.</h3><p>Con intenciones de que salgas haciendo nado de crol olímpico.</p></div></article>
+      <article class="time-item"><time>19:00 pm</time><div><h3>Masajes / Spa.</h3><p>Con la ilusión de que nos dejen pensando que tenemos la vida resuelta.</p></div></article>
+      <article class="time-item"><time>20:00 pm</time><div><h3>¿Tiempo libre?</h3><p>(nos ponemos lindos para la cena).</p></div></article>
+      <article class="time-item"><time>22:00 pm</time><div><h3>Cena.</h3><p>(Vale hablar de todo menos de trabajo, o solo mirarnos también sirve).</p></div></article>
+      <article class="time-item midnight"><time>00:00 am en adelante</time><div><h3>El cronograma se deja de hacer cargo de las decisiones tomadas.</h3><p>(...)</p></div></article>
+      <article class="time-item nextday"><time>Día siguiente</time><div><h3>Desayuno, recuperación de funciones vitales y evaluación de daños.</h3></div></article>
+      <article class="time-item"><time>14:00 pm</time><div><h3>Horario de regreso.</h3><p>Se procede a abandonar el establecimiento y volver a la realidad.</p></div></article>
+      <article class="time-item"><time>15:00 pm</time><div><h3>Te dejo en tu hogar, esperando seguir siendo un caballero a esta altura.</h3></div></article>
+    </div>
+
+    <div class="schedule-final">
+      <p>Atte.:</p>
+      <p><strong>Vicepresidencia de Planificación y Asuntos Recreativos</strong><br>
+      Departamento de Que Ojalá Todo Salga Bien</p>
+      <p class="fineprint">(El comité organizador no se responsabiliza por el incumplimiento parcial del presente itinerario, ni por aquellas actividades que los participantes decidan realizar que, eventualmente, resulten considerablemente más entretenidas).</p>
+    </div>
+  </section>
+</div>
+
+<div class="decision-modal" id="decisionModal">
+  <div class="decision-content">
+    <h2>🥳 Un momento...</h2>
+    <p>¿Confirmás tu asistencia a este plan no secreto?</p>
+    <div class="si-a-todo" id="siATodo">🎉 SI A TODO 🎉</div>
+    <div class="decision-buttons">
+      <button id="acceptBtn">✓ Acepto</button>
+      <button id="rejectBtn">✗ Rechazar</button>
+    </div>
+  </div>
+</div>
+
+<div class="suggestions-section" id="suggestionsSection">
+  <h3>💡 ¿Tenés sugerencias o ideas?</h3>
+  <p class="suggestions-fineprint">⚠️ Solo se aceptan sugerencias sugerentes.</p>
+  <a href="mailto:luciano.dedomenico01@gmail.com?subject=Sugerencias%20para%20Plan%20No%20Secreto&body=Mis%20ideas%20y%20sugerencias%20para%20el%20plan%3A%0A%0A" id="suggestLink">
+    📧 Enviar sugerencias
+  </a>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const checks = [...document.querySelectorAll('input[type="checkbox"]')];
+  const doneEl = document.getElementById('done');
+  const totalEl = document.getElementById('total');
+  const bar = document.getElementById('bar');
+  const toast = document.getElementById('toast');
+
+  let toastTimer;
+  function showToast(msg, duration = 2400){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), duration);
+  }
+
+  totalEl.textContent = checks.length;
+
+  const cardCounters = [...document.querySelectorAll('[data-counter]')];
+  function updateCardCounters(){
+    cardCounters.forEach(counter => {
+      const cardChecks = [...counter.closest('.card').querySelectorAll('input[type="checkbox"]')];
+      const done = cardChecks.filter(c => c.checked).length;
+      counter.textContent = `${done}/${cardChecks.length}`;
+    });
+  }
+
+  function save(){
+    localStorage.setItem('plan19-20-v2', JSON.stringify(checks.map(c => c.checked)));
+  }
+
+  function update(){
+    const done = checks.filter(c => c.checked).length;
+    doneEl.textContent = done;
+    const pct = Math.round(done / checks.length * 100);
+    bar.style.width = pct + '%';
+    updateCardCounters();
+    save();
+  }
+
+  const itemMessages = [
+    'Siempre fueron únicas 🐊',
+    'De preferencia esa bordó que alguna vez ví 😏',
+    'El único momento donde no hace falta ser hot (siempre lo sos)',
+    'Tampoco es que íbamos a dormir 😌',
+    'Todos queremos ver esa cintura 🔥',
+    'Prioridad alta confirmada. Miau oficial.',
+    'Noche común convertida en especial, asentado en el Cronograma.',
+    'Buscado en todas las flores, encontrado en la Lista Oficial.',
+    'Manos y pies aprobados por decreto de la Vicepresidencia de Planes No-Peligrosos.',
+    'Nivel de peligro actualizado. El COMITÉ ORGANIZADOR recomienda precaución.',
+    'Sorpresas y decisiones creativas, registradas sin preguntas.',
+    'Por si no copa lo de allá, la planificación cuestionable ya lo previó.',
+    'Certificado por la Vicepresidencia de Planes No-Peligrosos: apto para todo.',
+    'El COMITÉ ORGANIZADOR no se hace responsable del menú completo.',
+    'Autorizado. La Lista Oficial recomienda soltar el celular.',
+    '24 horas de no hacer nada, oficialmente aprobadas.',
+    'Identidad verificada. El Cronograma puede proceder.',
+    'Registrado, aunque la idea es usarlo lo menos posible.',
+    'Sin batería no hay planificación cuestionable que valga.',
+    'No se explica por qué. El COMITÉ ORGANIZADOR simplemente confía.',
+    'Por si nos da frío, la Vicepresidencia de Planes No-Peligrosos lo tiene cubierto.',
+    'Que entre en el bolso y en el Cronograma.',
+    'Hidratación aprobada por la Lista Oficial.',
+    'Registradas. Nivel de comodidad óptimo, según el COMITÉ ORGANIZADOR.',
+    'Sonido asegurado, planificación cuestionable como siempre.',
+    'Belleza opcional, pero anotada igual en la Lista Oficial.',
+    'Los tacos suenan bajo estricta supervisión del COMITÉ ORGANIZADOR.',
+    'No te rendís fácil, y eso queda en el Cronograma oficial.'
+  ];
+
+  checks.forEach((c, i) => {
+    c.addEventListener('change', () => {
+      c.closest('.item').classList.toggle('done', c.checked);
+      update();
+      playCheckSound();
+      if(c.checked){
+        showToast(itemMessages[i] || 'Registrado en la Lista Oficial.');
+      }
+    });
+  });
+
+  // Se usa una clave nueva de localStorage para no chocar con la versión anterior
+  const saved = JSON.parse(localStorage.getItem('plan19-20-v2') || '[]');
+  checks.forEach((c,i) => {
+    c.checked = !!saved[i];
+    c.closest('.item').classList.toggle('done', c.checked);
+  });
+  update();
+
+  document.getElementById('reset').onclick = () => {
+    checks.forEach(c => {
+      c.checked = false;
+      c.closest('.item').classList.remove('done');
+    });
+    update();
+    playClickSound();
+    const resetMessages = [
+      'El COMITÉ ORGANIZADOR ordena reiniciar el operativo.',
+      'Lista Oficial reiniciada. La planificación cuestionable vuelve a foja cero.',
+      'La Vicepresidencia de Planes No-Peligrosos borra toda evidencia.',
+      'Cronograma y Lista Oficial, tabula rasa. Empezamos de nuevo.'
+    ];
+    showToast(resetMessages[Math.floor(Math.random()*resetMessages.length)]);
+  };
+
+  const bagSecretMsg = document.getElementById('bagSecretMsg');
+  let bagMsgTimer;
+  const bagMessages = [
+    'La bolsa plástica permanece clasificada. Confianza requerida.',
+    'Nivel de acceso insuficiente. Igual, gracias por intentarlo.',
+    'Algunas cosas es mejor no preguntarlas.',
+    'El Comité se ríe ante tu intento de investigación.',
+    'Acceso denegado. Segui disfrutando del misterio.',
+    'La Vicepresidencia de Planes No-Peligrosos clasificó esto como top secret.',
+    'Ni el COMITÉ ORGANIZADOR sabe qué hay ahí adentro.'
+  ];
+
+  document.getElementById('bagBtn').onclick = () => {
+    playClickSound();
+    bagSecretMsg.textContent = bagMessages[Math.floor(Math.random()*bagMessages.length)];
+    bagSecretMsg.classList.add('show');
+    clearTimeout(bagMsgTimer);
+    bagMsgTimer = setTimeout(() => bagSecretMsg.classList.remove('show'), 3200);
+    const colors = ['#ff6f91', '#9b7ede', '#74b49b', '#ffd166'];
+    for(let i=0; i<30; i++){
+      const x = document.createElement('div');
+      x.className = 'confetti';
+      x.style.left = Math.random() * 100 + 'vw';
+      x.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      x.style.animationDelay = Math.random() * 0.4 + 's';
+      x.style.transform = `rotate(${Math.random() * 360}deg)`;
+      document.body.appendChild(x);
+      setTimeout(() => x.remove(), 2500);
+    }
+  };
+
+  const underwearMsg = document.getElementById('underwearMsg');
+  let underwearMsgTimer;
+  const underwearMessages = [
+    'No pude soportar hacer una descripción, lo lamento 💋',
+    'El COMITÉ ORGANIZADOR se negó a redactar esta parte del informe.',
+    'La Vicepresidencia de Planes No-Peligrosos declina hacer comentarios 💋'
+  ];
+  document.getElementById('underwearBtn').onclick = () => {
+    playClickSound();
+    underwearMsg.textContent = underwearMessages[Math.floor(Math.random()*underwearMessages.length)];
+    underwearMsg.classList.add('show');
+    clearTimeout(underwearMsgTimer);
+    underwearMsgTimer = setTimeout(() => underwearMsg.classList.remove('show'), 3200);
+  };
+
+  const foodMsg = document.getElementById('foodMsg');
+  let foodMsgTimer;
+  document.getElementById('foodBtn').onclick = () => {
+    playClickSound();
+    foodMsg.textContent = '¿En serio hacía falta investigar esto? 😅';
+    foodMsg.classList.add('show');
+    clearTimeout(foodMsgTimer);
+    foodMsgTimer = setTimeout(() => foodMsg.classList.remove('show'), 3200);
+  };
+
+  const tabs = [...document.querySelectorAll('.tab')];
+  const mainContent = document.getElementById('mainContent');
+  const cronograma = document.querySelector('.schedule-tab');
+  const dashboard = document.getElementById('dashboard');
+  const daysBar = document.getElementById('daysBar');
+  const finalSection = document.getElementById('finalSection');
+  const mainHeader = document.getElementById('mainHeader');
+  const headerStamp = document.getElementById('headerStamp');
+  const headerTitle = document.getElementById('headerTitle');
+  const headerSubtitle = document.getElementById('headerSubtitle');
+  const daysFill = document.getElementById('daysFill');
+  const timerEl = document.getElementById('timer');
+  const decisionModal = document.getElementById('decisionModal');
+  const acceptBtn = document.getElementById('acceptBtn');
+  const rejectBtn = document.getElementById('rejectBtn');
+  const suggestionsSection = document.getElementById('suggestionsSection');
+
+  // Countdown real hasta el 19 de septiembre, con barra anclada al 3 de septiembre (0%)
+  const PROGRESS_START = new Date(2026, 8, 3);
+  const EVENT_DATE = new Date(2026, 8, 19);
+
+  function updateTimer() {
+    const now = new Date();
+    const remaining = EVENT_DATE - now;
+
+    if (remaining <= 0) {
+      timerEl.textContent = '¡YA LLEGÓ!';
+      daysFill.style.width = '100%';
+      return;
+    }
+
+    const totalSeconds = Math.floor(remaining / 1000);
+    const days = Math.floor(totalSeconds / (24 * 60 * 60));
+    const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
+    const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+    const seconds = totalSeconds % 60;
+
+    timerEl.textContent = `${String(days).padStart(2, '0')}d ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
+
+    const pct = (now - PROGRESS_START) / (EVENT_DATE - PROGRESS_START) * 100;
+    daysFill.style.width = Math.max(0, Math.min(100, pct)) + '%';
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+
+  // Sonidos livianos vía Web Audio API (sin archivos externos)
+  let audioCtx;
+  function getAudioCtx(){
+    if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    return audioCtx;
+  }
+  function playTone(freq, duration, type, volume){
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    gain.gain.value = volume;
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+    osc.stop(ctx.currentTime + duration);
+  }
+  function playClickSound(){ playTone(600, 0.08, 'sine', 0.06); }
+  function playCheckSound(){ playTone(880, 0.12, 'triangle', 0.05); }
+  function playHoverHint(){ playTone(1200, 0.04, 'sine', 0.02); }
+
+  document.querySelectorAll('.item').forEach(item => {
+    item.addEventListener('mouseenter', playHoverHint);
+  });
+
+  // Partículas ambientales flotantes
+  const sparkleColors = ['#ff6f91', '#9b7ede', '#74b49b', '#ffd166'];
+  setInterval(() => {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    const size = 4 + Math.random() * 4;
+    s.style.width = size + 'px';
+    s.style.height = size + 'px';
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.background = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+    s.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
+    s.style.animationDuration = (8 + Math.random() * 6) + 's';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 15000);
+  }, 900);
+
+  // Lógica del modal de aceptar/rechazar
+  let hasAccepted = localStorage.getItem('planAccepted') === 'true';
+  
+  if (!hasAccepted) {
+    decisionModal.classList.add('show');
+  }
+
+  acceptBtn.addEventListener('click', () => {
+    localStorage.setItem('planAccepted', 'true');
+    playClickSound();
+    decisionModal.classList.remove('show');
+    hasAccepted = true;
+  });
+
+  rejectBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    playClickSound();
+    rejectBtn.disabled = true;
+    rejectBtn.textContent = '✗ No podés rechazar';
+    document.getElementById('siATodo').classList.add('show');
+    const siColors = ['#ff6f91', '#9b7ede', '#74b49b', '#ffd166'];
+    for(let i=0; i<40; i++){
+      const x = document.createElement('div');
+      x.className = 'confetti';
+      x.style.left = Math.random() * 100 + 'vw';
+      x.style.backgroundColor = siColors[Math.floor(Math.random() * siColors.length)];
+      x.style.animationDelay = Math.random() * 0.4 + 's';
+      x.style.transform = `rotate(${Math.random() * 360}deg)`;
+      document.body.appendChild(x);
+      setTimeout(() => x.remove(), 2500);
+    }
+
+    setTimeout(() => {
+      rejectBtn.disabled = false;
+      rejectBtn.textContent = '✗ Rechazar';
+      rejectBtn.style.position = 'absolute';
+      rejectBtn.style.left = Math.random() * (window.innerWidth - 120) + 'px';
+      rejectBtn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+      document.getElementById('siATodo').classList.remove('show');
+    }, 1500);
+  });
+
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const isSchedule = tab.dataset.tab === 'cronograma';
+    
+    // Mostrar/ocultar elementos según la pestaña
+    mainHeader.hidden = isSchedule;
+    mainContent.hidden = isSchedule;
+    dashboard.hidden = isSchedule;
+    daysBar.hidden = isSchedule;
+    finalSection.hidden = isSchedule;
+    suggestionsSection.hidden = isSchedule;
+    cronograma.hidden = !isSchedule;
+    
+    playClickSound();
+    const tabMessages = isSchedule ? [
+      'Acceso concedido al Cronograma. El COMITÉ ORGANIZADOR observa.',
+      'El Cronograma queda oficialmente desclasificado.',
+      'Bienvenido al Cronograma. La planificación cuestionable continúa.'
+    ] : [
+      'De vuelta en la Lista Oficial. La Vicepresidencia de Planes No-Peligrosos respira aliviada.',
+      'Lista Oficial reactivada. Planificación cuestionable en curso.',
+      'El COMITÉ ORGANIZADOR celebra tu regreso a la Lista Oficial.'
+    ];
+    showToast(tabMessages[Math.floor(Math.random()*tabMessages.length)]);
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }));
+
+  document.querySelector('.midnight > div').addEventListener('click', () => {
+    playClickSound();
+    showToast('(Tal vez sea el único momento del día donde te deje tomar alguna decisión) 😏');
+  });
+
+  document.getElementById('suggestLink').addEventListener('click', () => {
+    playClickSound();
+    // El mailto: depende de que el sistema tenga un cliente de correo configurado;
+    // como respaldo, copiamos el mail al portapapeles por si no se abre nada.
+    const suggestEmail = 'luciano.dedomenico01@gmail.com';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(suggestEmail)
+        .then(() => showToast('Copiamos el mail por si no se abrió tu app de correo: ' + suggestEmail, 4500))
+        .catch(() => showToast('Escribinos a: ' + suggestEmail, 4500));
+    } else {
+      showToast('Escribinos a: ' + suggestEmail, 4500);
+    }
+  });
+
+  const confessionBtn = document.getElementById('confessionBtn');
+  const confessionMsg = document.getElementById('confessionMsg');
+  confessionBtn.addEventListener('click', () => {
+    playClickSound();
+    confessionMsg.classList.toggle('show');
+  });
+
+</script>
+</body>
+</html>
