@@ -79,6 +79,17 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  .tab-icon,
+  .official-icon {
+    display: inline;
+    width: auto;
+    height: auto;
+    margin-right: 6px;
+    font-size: 1em;
+    line-height: inherit;
+    vertical-align: baseline;
+  }
+
   .tab:hover {
     background: rgba(255, 255, 255, 0.9);
     transform: translateY(-2px);
@@ -94,6 +105,55 @@
   header {
     padding: 60px 0 35px;
     text-align: center;
+  }
+
+  header.list-header {
+    position: relative;
+    margin: 20px 0 28px;
+    padding: 42px 36px 30px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(255, 111, 145, 0.9), rgba(155, 126, 222, 0.88));
+    border-radius: 30px;
+    box-shadow: 0 24px 45px rgba(155, 126, 222, 0.2);
+    color: #fff;
+  }
+
+  header.list-header:after {
+    content: "✓  ·  ✓  ·  ✓";
+    position: absolute;
+    right: 22px;
+    bottom: -18px;
+    color: rgba(255, 255, 255, 0.16);
+    font-size: 5rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    transform: rotate(-8deg);
+    pointer-events: none;
+  }
+
+  header.list-header .stamp,
+  header.list-header h1,
+  header.list-header .subtitle,
+  header.list-header .confession-btn,
+  header.list-header .confession-msg,
+  header.list-header .tabs {
+    position: relative;
+    z-index: 1;
+  }
+
+  header.list-header .stamp {
+    border-color: rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    box-shadow: none;
+  }
+
+  header.list-header h1 span {
+    color: #ffe0e8;
+  }
+
+  header.list-header .subtitle {
+    color: rgba(255, 255, 255, 0.9);
   }
 
   .stamp {
@@ -178,6 +238,12 @@
     max-height: 120px;
     opacity: 1;
     margin-top: 14px;
+    padding: 9px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 18px rgba(91, 64, 125, 0.12);
     animation: confessionPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
@@ -837,15 +903,127 @@
   }
 
   .schedule-hero {
+    position: relative;
+    max-width: 850px;
+    margin: 0 auto 28px;
+    padding: 42px 36px 36px;
+    overflow: hidden;
     text-align: center;
-    margin: 20px auto 40px;
-    max-width: 780px;
+    background: linear-gradient(135deg, rgba(116, 180, 155, 0.92), rgba(121, 184, 255, 0.88));
+    border-radius: 30px;
+    box-shadow: 0 24px 45px rgba(116, 180, 155, 0.2);
+    color: #fff;
+  }
+
+  .schedule-hero:after {
+    content: "◷  ·  ◴  ·  ◷";
+    position: absolute;
+    right: 22px;
+    bottom: -18px;
+    color: rgba(255, 255, 255, 0.18);
+    font-size: 5rem;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    transform: rotate(-8deg);
+  }
+
+  .schedule-hero .stamp {
+    border-color: rgba(255, 255, 255, 0.72);
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    box-shadow: none;
   }
 
   .schedule-hero h2 {
-    font-size: clamp(2rem, 5vw, 4rem);
-    margin: 24px 0 10px;
+    position: relative;
+    z-index: 1;
+    margin: 22px 0 8px;
+    font-size: clamp(2rem, 5vw, 3.8rem);
     letter-spacing: -0.05em;
+  }
+
+  .schedule-hero p {
+    position: relative;
+    z-index: 1;
+    max-width: 590px;
+    margin: auto;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .schedule-meta {
+    display: inline-flex;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 8px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
+  .schedule-note {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    margin-top: 12px;
+    max-width: 100%;
+    padding: 9px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.92rem;
+    font-style: italic;
+    line-height: 1.45;
+    box-shadow: 0 8px 18px rgba(63, 103, 126, 0.12);
+  }
+
+  .schedule-confession-btn,
+  .playlist-confession-btn {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    margin-top: 16px;
+    padding: 8px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .schedule-confession-btn:hover,
+  .playlist-confession-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .schedule-note,
+  .playlist-note {
+    max-height: 0;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-color: transparent;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+
+  .schedule-note.show,
+  .playlist-note.show {
+    max-height: 120px;
+    margin-top: 12px;
+    padding: 9px 15px;
+    border-color: rgba(255, 255, 255, 0.28);
+    opacity: 1;
   }
 
   .timeline {
@@ -933,19 +1111,232 @@
     font-weight: 500;
   }
 
-  .activity-icon {
-    position: absolute;
-    top: 50%;
-    right: 24px;
-    transform: translateY(-50%);
+  .event-location {
+    position: static;
+    list-style: none;
+  }
+
+  .event-location::-webkit-details-marker {
+    display: none;
+  }
+
+  .event-location > summary {
     display: grid;
-    width: 46px;
-    height: 46px;
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    z-index: 2;
+    margin: 0;
     place-items: center;
+    padding: 0;
+    border: 1px solid rgba(255, 111, 145, 0.3);
+    border-radius: 10px;
+    background: rgba(255, 247, 249, 0.82);
+    color: #e65a7b;
+    font-size: 0;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0;
+    list-style: none;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .event-location > summary:before {
+    content: "";
+    display: block;
+    width: 13px;
+    height: 13px;
+    border-radius: 50% 50% 50% 0;
+    background: #e45773;
+    transform: rotate(-45deg);
+  }
+
+  .event-location > summary:after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(255, 111, 145, 0.18), rgba(155, 126, 222, 0.2));
-    color: #b34e70;
-    font-size: 1.5rem;
+    background: #fff;
+  }
+
+  .event-location[open] > summary {
+    background: #fff;
+    box-shadow: 0 5px 12px rgba(230, 90, 123, 0.2);
+  }
+
+  .event-location > summary:hover {
+    background: #fff;
+    box-shadow: 0 6px 14px rgba(230, 90, 123, 0.18);
+  }
+
+  .classified-location > summary {
+    border-color: rgba(41, 35, 42, 0.22);
+    background: rgba(245, 241, 243, 0.9);
+    color: #756b74;
+  }
+
+  .classified-location > summary:before {
+    background: #756b74;
+  }
+
+  .classified-location.unlocked > summary {
+    border-color: rgba(116, 180, 155, 0.4);
+    background: rgba(238, 248, 244, 0.9);
+  }
+
+  .classified-location.unlocked > summary:before {
+    background: #4f9b7c;
+  }
+
+  .event-map-preview {
+    position: relative;
+    width: 100%;
+    margin-top: 12px;
+    z-index: 3;
+    overflow: hidden;
+    border: 1px solid rgba(255, 111, 145, 0.28);
+    border-radius: 16px;
+    background: #fff;
+    box-shadow: 0 14px 28px rgba(65, 40, 55, 0.18);
+  }
+
+  .event-map-preview iframe {
+    display: block;
+    width: 100%;
+    height: 260px;
+    border: 0;
+  }
+
+  .playlist-tab {
+    padding: 20px 0 70px;
+  }
+
+  .playlist-hero {
+    position: relative;
+    max-width: 850px;
+    margin: 0 auto 28px;
+    padding: 42px 36px 36px;
+    overflow: hidden;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255, 111, 145, 0.9), rgba(155, 126, 222, 0.88));
+    border-radius: 30px;
+    box-shadow: 0 24px 45px rgba(155, 126, 222, 0.2);
+    color: #fff;
+  }
+
+  .playlist-hero:after {
+    content: "♫  ♬  ♪";
+    position: absolute;
+    right: 22px;
+    bottom: -16px;
+    color: rgba(255, 255, 255, 0.18);
+    font-size: 5rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    transform: rotate(-8deg);
+  }
+
+  .playlist-hero .stamp {
+    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    box-shadow: none;
+  }
+
+  .schedule-hero .official-icon {
+    margin-right: 8px;
+  }
+
+  .playlist-hero h2 {
+    position: relative;
+    z-index: 1;
+    margin: 22px 0 8px;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    letter-spacing: -0.05em;
+  }
+
+  .playlist-hero p {
+    position: relative;
+    z-index: 1;
+    max-width: 560px;
+    margin: auto;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .playlist-meta {
+    display: inline-flex;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 8px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 0.82rem;
+    font-weight: 800;
+  }
+
+  .playlist-note {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    margin-top: 12px;
+    max-width: 100%;
+    padding: 9px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.92rem;
+    font-style: italic;
+    line-height: 1.45;
+    box-shadow: 0 8px 18px rgba(91, 64, 125, 0.12);
+  }
+
+  .playlist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 850px;
+    margin: auto;
+  }
+
+  .track-card {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.78);
+    border-radius: 22px;
+    box-shadow: 0 14px 30px rgba(65, 40, 55, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .track-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 34px rgba(65, 40, 55, 0.13);
+  }
+
+  .track-number {
+    display: block;
+    padding: 4px 8px 8px;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .track-card iframe {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: 14px;
   }
 
   .midnight > div {
@@ -1042,6 +1433,14 @@
     .decision-content h2 { font-size: 1.6rem; }
     .si-a-todo { font-size: 2rem; }
     .suggestions-section { padding: 28px; margin: 40px auto 30px; }
+    .playlist-hero { padding: 32px 22px 28px; border-radius: 24px; }
+    .playlist-hero h2 { font-size: 2rem; }
+    .playlist-hero p { font-size: 0.95rem; }
+    .playlist-grid { grid-template-columns: 1fr; gap: 14px; }
+    .schedule-hero { padding: 32px 22px 28px; border-radius: 24px; }
+    .schedule-hero h2 { font-size: 2rem; }
+    .schedule-hero p { font-size: 0.95rem; }
+    header.list-header { margin-top: 12px; padding: 32px 22px 26px; border-radius: 24px; }
     .schedule-final { padding: 24px; }
     .time-item > div { padding: 20px 76px 20px 20px; }
     .activity-icon { right: 18px; width: 42px; height: 42px; font-size: 1.3rem; }
@@ -1061,12 +1460,13 @@
 <body>
 <div class="bg-blobs"><div class="blob"></div><div class="blob"></div><div class="blob"></div></div>
 <div class="wrap">
-  <header id="mainHeader">
+  <header id="mainHeader" class="list-header">
     <div class="stamp" id="headerStamp">📋 LISTA OFICIAL DE ELEMENTOS</div>
     <h1 id="headerTitle">PLAN NO SECRETO<br><span>19 y 20 DE SEP</span> ⭐</h1>
     <nav class="tabs">
       <button class="tab active" data-tab="lista">📋 Lista oficial</button>
-      <button class="tab" data-tab="cronograma">🕐 Cronograma oficial</button>
+      <button class="tab" data-tab="cronograma"><span class="tab-icon" aria-hidden="true">🕐</span>Cronograma oficial</button>
+      <button class="tab" data-tab="playlist"><span class="tab-icon" aria-hidden="true">🎧</span>Playlist oficial</button>
     </nav>
     <p class="subtitle" id="headerSubtitle">
       (documento de extrema importancia y bajo ningún concepto exageradamente elaborado)
@@ -1161,13 +1561,18 @@
 
   <section id="cronograma" class="schedule-tab" hidden>
     <div class="schedule-hero">
-      <div class="stamp">CRONOGRAMA OFICIAL</div>
+      <div class="stamp"><span class="official-icon" aria-hidden="true">🕐</span>CRONOGRAMA OFICIAL</div>
+      <h2>Todo bajo control</h2>
+      <p>Un cronograma innecesariamente detallado para que podamos improvisar con total tranquilidad.</p>
+      <div class="schedule-meta">11 momentos <span aria-hidden="true">•</span> Plan No Secreto</div>
+      <button class="schedule-confession-btn" id="scheduleConfessionBtn">Ver más</button>
+      <small class="schedule-note">Zaira, no preguntes por qué esto tiene tanto detalle: solo puedo decir que no voy a volver a explicar tanto.</small>
     </div>
 
     <div class="timeline">
-      <article class="time-item"><time>13:00 pm</time><div><h3>Paso a buscarte.</h3><p>Podés ser impuntual, siempre te voy a esperar (pero).</p><span class="activity-icon" aria-hidden="true">🚗</span></div></article>
-      <article class="time-item"><time>13:45 pm</time><div><h3>Almuerzo.</h3><p>Porque algo tan aburrido como comer es más divertido si se hace de a dos.</p><span class="activity-icon" aria-hidden="true">🍝</span></div></article>
-      <article class="time-item"><time>15:00 pm</time><div><h3>Entrada al establecimiento.</h3><p>Quedan suspendidas todas las responsabilidades.</p><span class="activity-icon" aria-hidden="true">🏨</span></div></article>
+      <article class="time-item"><time>13:00 pm</time><div><h3>Paso a buscarte.</h3><p>Podés ser impuntual, siempre te voy a esperar (pero).</p><details class="event-location"><summary>Ver ubicación</summary><div class="event-map-preview"><iframe src="https://www.google.com/maps?q=Islas+Malvinas+3049,+B1651+Villa+San+Andr%C3%A9s,+Provincia+de+Buenos+Aires&output=embed" loading="lazy" title="Mapa de Paso a buscarte"></iframe></div></details><span class="activity-icon" aria-hidden="true">🚗</span></div></article>
+      <article class="time-item"><time>13:45 pm</time><div><h3>Almuerzo.</h3><p>Porque algo tan aburrido como comer es más divertido si se hace de a dos.</p><details class="event-location"><summary>Ver ubicación</summary><div class="event-map-preview"><iframe src="https://www.google.com/maps?q=Dandy+Urquiza&output=embed" loading="lazy" title="Mapa de Almuerzo"></iframe></div></details><span class="activity-icon" aria-hidden="true">🍝</span></div></article>
+      <article class="time-item"><time>15:00 pm</time><div><h3>Entrada al establecimiento.</h3><p>Quedan suspendidas todas las responsabilidades.</p><details class="event-location classified-location"><summary>Ver ubicación</summary><div class="event-map-preview"><iframe src="https://www.google.com/maps?q=DoubleTree+by+Hilton+Buenos+Aires&output=embed" loading="lazy" title="Mapa de Entrada al establecimiento"></iframe></div></details><span class="activity-icon" aria-hidden="true">🏨</span></div></article>
       <article class="time-item"><time>17:30 pm</time><div><h3>Pileta climatizada.</h3><p>Con intenciones de que salgas haciendo nado de crol olímpico.</p><span class="activity-icon" aria-hidden="true">🏊</span></div></article>
       <article class="time-item"><time>19:00 pm</time><div><h3>Masajes / Spa.</h3><p>Con la ilusión de que nos dejen pensando que tenemos la vida resuelta.</p><span class="activity-icon" aria-hidden="true">💆</span></div></article>
       <article class="time-item"><time>20:00 pm</time><div><h3>¿Tiempo libre?</h3><p>(nos ponemos lindos para la cena).</p><span class="activity-icon" aria-hidden="true">✨</span></div></article>
@@ -1188,6 +1593,44 @@
         </div>
       </div>
       <p class="fineprint">(El comité organizador no se responsabiliza por el incumplimiento parcial del presente itinerario, ni por aquellas actividades que los participantes decidan realizar que, eventualmente, resulten considerablemente más entretenidas).</p>
+    </div>
+  </section>
+
+  <section id="playlist" class="playlist-tab" hidden>
+    <div class="playlist-hero">
+      <div class="stamp"><span class="official-icon" aria-hidden="true">🎧</span>PLAYLIST OFICIAL</div>
+      <h2>La banda sonora del plan</h2>
+      <p>24 canciones elegidas casualmente y sin ninguna intención, porque definitivamente jamás pensé en vos escuchando nada de esto.</p>
+      <div class="playlist-meta">24 canciones <span aria-hidden="true">•</span> Plan No Secreto</div>
+      <button class="playlist-confession-btn" id="playlistConfessionBtn">Ver más</button>
+      <small class="playlist-note">Sí, Zaira: esto empezó como un mensaje de WhatsApp que solo decía «llevá las Crocs» y terminó acá.</small>
+    </div>
+
+    <div class="playlist-grid">
+      <article class="track-card"><span class="track-number">Pista 01</span><iframe src="https://open.spotify.com/embed/track/5uB9A6qyITcyfGpgd1ReiM?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 01"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 02</span><iframe src="https://open.spotify.com/embed/track/31i56LZnwE6uSu3exoHjtB?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 02"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 03</span><iframe src="https://open.spotify.com/embed/track/003vvx7Niy0yvhvHt4a68B?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 03"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 04</span><iframe src="https://open.spotify.com/embed/track/0DzrN4SENliHYbeYfcT94z?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 04"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 05</span><iframe src="https://open.spotify.com/embed/track/5x5JM1BSB6vollcIzDocqT?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 05"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 06</span><iframe src="https://open.spotify.com/embed/track/2Jm6e8DnWFBsSLeXTLRTvs?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 06"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 07</span><iframe src="https://open.spotify.com/embed/track/3pevHGhwL0brjFQfPABwns?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 07"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 08</span><iframe src="https://open.spotify.com/embed/track/1daDRI9ahBonbWD8YcxOIB?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 08"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 09</span><iframe src="https://open.spotify.com/embed/track/4xZyRn3e7WubmlnLXoOaTW?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 09"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 10</span><iframe src="https://open.spotify.com/embed/track/5EGVGkRRJ2udpRnVGpx8LM?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 10"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 11</span><iframe src="https://open.spotify.com/embed/track/7DSAEUvxU8FajXtRloy8M0?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 11"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 12</span><iframe src="https://open.spotify.com/embed/track/0BxE4FqsDD1Ot4YuBXwAPp?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 12"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 13</span><iframe src="https://open.spotify.com/embed/track/4XD6kT2LsatrFzAPn2RPQy?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 13"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 14</span><iframe src="https://open.spotify.com/embed/track/6wJvW8CFfMhSOIvj5CkVVM?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 14"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 15</span><iframe src="https://open.spotify.com/embed/track/2Z8WuEywRWYTKe1NybPQEW?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 15"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 16</span><iframe src="https://open.spotify.com/embed/track/3CRDbSIZ4r5MsZ0YwxuEkn?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 16"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 17</span><iframe src="https://open.spotify.com/embed/track/0fHTVPRRKmWaRuIwrsNTMp?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 17"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 18</span><iframe src="https://open.spotify.com/embed/track/1p7m9H4H8s0Y7SgRm7j3ED?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 18"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 19</span><iframe src="https://open.spotify.com/embed/track/5kl4FkCUzVa5wicxafa9yc?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 19"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 20</span><iframe src="https://open.spotify.com/embed/track/09IVTOlVskAGDQaoQITb41?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 20"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 21</span><iframe src="https://open.spotify.com/embed/track/4XnPyINNc5ODYP1aoos7Um?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 21"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 22</span><iframe src="https://open.spotify.com/embed/track/5FVd6KXrgO9B3JPmC8OPst?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 22"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 23</span><iframe src="https://open.spotify.com/embed/track/5XeFesFbtLpXzIVDNQP22n?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 23"></iframe></article>
+      <article class="track-card"><span class="track-number">Pista 24</span><iframe src="https://open.spotify.com/embed/track/3JCian69xIfy8A4799Og5f?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 24"></iframe></article>
     </div>
   </section>
 </div>
@@ -1228,6 +1671,36 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => toast.classList.remove('show'), duration);
   }
+
+  const classifiedLocation = document.querySelector('.classified-location');
+  if (classifiedLocation) {
+    let classifiedAttempts = 0;
+    classifiedLocation.addEventListener('click', (event) => {
+      if (classifiedLocation.classList.contains('unlocked')) return;
+      event.preventDefault();
+      classifiedAttempts += 1;
+      if (classifiedAttempts < 15) {
+        showToast('Información clasificada.', 1600);
+        return;
+      }
+      classifiedLocation.open = true;
+      showToast('Acceso concedido. La ubicación queda oficialmente desclasificada.', 3200);
+    });
+  }
+
+  const scheduleConfessionBtn = document.getElementById('scheduleConfessionBtn');
+  const scheduleNote = document.querySelector('.schedule-note');
+  scheduleConfessionBtn?.addEventListener('click', () => {
+    playClickSound();
+    scheduleNote.classList.toggle('show');
+  });
+
+  const playlistConfessionBtn = document.getElementById('playlistConfessionBtn');
+  const playlistNote = document.querySelector('.playlist-note');
+  playlistConfessionBtn?.addEventListener('click', () => {
+    playClickSound();
+    playlistNote.classList.toggle('show');
+  });
 
   totalEl.textContent = checks.length;
 
@@ -1378,6 +1851,7 @@
   const tabs = [...document.querySelectorAll('.tab')];
   const mainContent = document.getElementById('mainContent');
   const cronograma = document.querySelector('.schedule-tab');
+  const playlist = document.getElementById('playlist');
   const dashboard = document.getElementById('dashboard');
   const daysBar = document.getElementById('daysBar');
   const finalSection = document.getElementById('finalSection');
@@ -1512,6 +1986,7 @@
     tabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     const isSchedule = tab.dataset.tab === 'cronograma';
+    mainHeader.classList.toggle('list-header', tab.dataset.tab === 'lista');
     
     // Mostrar/ocultar elementos según la pestaña
     headerStamp.hidden = isSchedule;
@@ -1525,9 +2000,28 @@
     finalSection.hidden = isSchedule;
     suggestionsSection.hidden = isSchedule;
     cronograma.hidden = !isSchedule;
+    playlist.hidden = tab.dataset.tab !== 'playlist';
+
+    if (tab.dataset.tab === 'playlist') {
+      headerStamp.hidden = true;
+      headerTitle.hidden = true;
+      headerSubtitle.hidden = true;
+      confessionBtn.hidden = true;
+      confessionMsg.hidden = true;
+      mainContent.hidden = true;
+      dashboard.hidden = true;
+      daysBar.hidden = true;
+      finalSection.hidden = true;
+      suggestionsSection.hidden = true;
+      cronograma.hidden = true;
+    }
     
     playClickSound();
-    const tabMessages = isSchedule ? [
+    const tabMessages = tab.dataset.tab === 'playlist' ? [
+      'Playlist Oficial cargada. La banda sonora del plan queda oficialmente desclasificada.',
+      '21 canciones para acompañar decisiones de dudosa responsabilidad.',
+      'El COMITÉ ORGANIZADOR recomienda darle play.'
+    ] : isSchedule ? [
       'Acceso concedido al Cronograma. El COMITÉ ORGANIZADOR observa.',
       'El Cronograma queda oficialmente desclasificado.',
       'Bienvenido al Cronograma. La planificación cuestionable continúa.'
