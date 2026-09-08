@@ -48,7 +48,7 @@
     display: flex;
     gap: 12px;
     justify-content: center;
-    padding-top: 30px;
+    margin: 0 auto 18px;
     position: relative;
     z-index: 20;
   }
@@ -492,44 +492,38 @@
     box-shadow: 0 8px 15px rgba(255, 111, 145, 0.2);
   }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 24px;
-    padding-bottom: 24px;
-  }
-
-  .card {
+  .checklist {
     background: var(--card);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: var(--glass-border);
-    border-top: 5px solid transparent;
     border-radius: var(--radius);
-    padding: 28px;
     box-shadow: var(--shadow);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    padding: 6px 44px 2px;
+    column-count: 2;
+    column-gap: 56px;
+    column-rule: 1px dashed rgba(41, 35, 42, 0.14);
   }
 
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 30px 60px -15px rgba(65, 40, 55, 0.15);
+  .list-section {
+    break-inside: avoid;
+    padding: 24px 0;
   }
 
-  .card.full {
-    grid-column: 1 / -1;
+  .list-section.cat-mandatory {
+    background: linear-gradient(135deg, rgba(255, 77, 109, 0.09), rgba(255, 77, 109, 0.02) 65%);
+    border-radius: 20px;
+    padding: 20px 22px;
+    margin: 4px 0;
   }
 
-  .card.cat-basics { border-top-color: var(--pink); }
-  .card.cat-priority { border-top-color: var(--purple); }
-  .card.cat-extras { border-top-color: var(--green); }
-  .card.cat-mandatory { border-top-color: #ff4d6d; background: linear-gradient(180deg, rgba(255, 77, 109, 0.08), var(--card) 70px); }
-  .card.cat-optional { border-top-style: dashed; border-top-color: var(--blue); }
-
-  .card h2 {
-    margin: 0 0 20px;
-    font-size: 1.4rem;
-    letter-spacing: -0.02em;
+  .list-section h2 {
+    margin: 0 0 12px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--pink);
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
     color: var(--ink);
     display: flex;
     align-items: center;
@@ -537,8 +531,14 @@
     gap: 12px;
   }
 
+  .list-section.cat-basics h2 { border-bottom-color: var(--pink); }
+  .list-section.cat-priority h2 { border-bottom-color: var(--purple); }
+  .list-section.cat-extras h2 { border-bottom-color: var(--green); }
+  .list-section.cat-mandatory h2 { border-bottom-color: #ff4d6d; }
+  .list-section.cat-optional h2 { border-bottom-style: dashed; border-bottom-color: var(--blue); }
+
   .card-counter {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 800;
     color: var(--muted);
     background: rgba(0, 0, 0, 0.05);
@@ -546,21 +546,24 @@
     border-radius: 999px;
     white-space: nowrap;
     flex-shrink: 0;
+    text-transform: none;
+    letter-spacing: normal;
   }
 
   .item {
     display: flex;
     align-items: flex-start;
     gap: 14px;
-    padding: 14px 16px;
-    margin: 10px 0;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 12px 6px;
+    border-bottom: 1px dashed rgba(41, 35, 42, 0.12);
     transition: all 0.25s ease;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+  }
+
+  .list-section .item:last-child {
+    border-bottom: none;
   }
 
   .item::before {
@@ -580,14 +583,12 @@
   }
 
   .item:hover {
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-    transform: translateX(4px) scale(1.01);
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateX(4px);
   }
 
   .item.done {
-    background: rgba(245, 241, 243, 0.6);
-    border-color: transparent;
+    background: rgba(245, 241, 243, 0.5);
     color: #91878e;
   }
 
@@ -650,8 +651,28 @@
   }
 
   .text-muted {
-    color: var(--muted);
-    font-size: 0.95em;
+    display: inline-block;
+    margin-left: 7px;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, rgba(255, 159, 186, 0.22), rgba(155, 126, 222, 0.16));
+    color: #75628c;
+    font-size: 0.88em;
+    font-weight: 500;
+    line-height: 1.4;
+    vertical-align: middle;
+  }
+
+  .text-muted::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin: 0 6px 2px 1px;
+    border-radius: 50%;
+    background: var(--pink);
+    box-shadow: 0 0 0 3px rgba(255, 111, 145, 0.12);
+    color: var(--pink);
   }
 
   .final {
@@ -871,12 +892,13 @@
   }
 
   .time-item > div {
+    position: relative;
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(12px);
     border: var(--glass-border);
     box-shadow: var(--shadow);
     border-radius: 24px;
-    padding: 22px 26px;
+    padding: 22px 92px 22px 26px;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
@@ -896,6 +918,21 @@
     color: var(--muted);
     line-height: 1.6;
     font-weight: 500;
+  }
+
+  .activity-icon {
+    position: absolute;
+    top: 50%;
+    right: 24px;
+    transform: translateY(-50%);
+    display: grid;
+    width: 46px;
+    height: 46px;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 111, 145, 0.18), rgba(155, 126, 222, 0.2));
+    color: #b34e70;
+    font-size: 1.5rem;
   }
 
   .midnight > div {
@@ -920,7 +957,7 @@
   .schedule-final {
     max-width: 850px;
     margin: 40px auto 0;
-    padding: 35px;
+    padding: 30px 35px;
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
     border: var(--glass-border);
@@ -929,6 +966,26 @@
     line-height: 1.7;
   }
 
+  .schedule-signature {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .schedule-signature-icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink), var(--purple));
+    color: #fff;
+    font-size: 1.4rem;
+  }
+
+  .schedule-signature p { margin: 0; }
+  .schedule-signature-label { color: var(--muted); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
   .schedule-final strong { color: #b34e70; font-weight: 900;}
   
   .fineprint {
@@ -944,8 +1001,7 @@
   }
 
   @media(max-width: 760px) {
-    .grid { grid-template-columns: 1fr; }
-    .card.full { grid-column: auto; }
+    .checklist { column-count: 1; padding: 4px 30px 2px; }
     .dashboard { flex-wrap: wrap; padding: 16px; gap: 12px; }
     .progress { flex-basis: 100%; order: 3; }
     header { padding-top: 40px; }
@@ -955,6 +1011,7 @@
     .time-item { grid-template-columns: 1fr; gap: 8px; padding-left: 54px; margin-bottom: 30px;}
     .time-item:after { left: 16px; top: 0px;}
     .time-item time { text-align: left; padding-top: 0; margin-bottom: 5px; font-size: 1.05rem;}
+    .schedule-signature { align-items: flex-start; }
   }
 
   @media(max-width: 600px) {
@@ -962,8 +1019,8 @@
     .tab { flex: 1; padding: 10px 12px; font-size: 0.82rem; }
     .days-bar { flex-wrap: wrap; padding: 14px 16px; gap: 10px; }
     .days-label { font-size: 0.85rem; }
-    .card { padding: 22px; }
-    .card h2 { font-size: 1.15rem; }
+    .checklist { padding: 4px 20px 2px; }
+    .list-section h2 { font-size: 0.9rem; }
     .final { padding: 28px; }
     .secret { padding: 18px; }
     .secret-buttons { flex-direction: column; }
@@ -973,6 +1030,8 @@
     .si-a-todo { font-size: 2rem; }
     .suggestions-section { padding: 28px; margin: 40px auto 30px; }
     .schedule-final { padding: 24px; }
+    .time-item > div { padding: 20px 76px 20px 20px; }
+    .activity-icon { right: 18px; width: 42px; height: 42px; font-size: 1.3rem; }
     .toast { max-width: 85vw; font-size: 0.88rem; padding: 12px 18px; }
     .timer { font-size: 0.8rem; }
   }
@@ -981,37 +1040,7 @@
     h1 { font-size: 1.8rem; }
     .subtitle { font-size: 1rem; }
     .tab { font-size: 0.75rem; padding: 8px 10px; }
-    .grid { gap: 16px; }
-    .card h2 { font-size: 1.05rem; flex-wrap: wrap; gap: 6px; }
-    .card-counter { font-size: 0.72rem; padding: 3px 10px; }
-  }
-
-  @media(max-width: 600px) {
-    .tabs { padding-top: 16px; }
-    .tab { flex: 1; padding: 10px 12px; font-size: 0.82rem; }
-    .days-bar { flex-wrap: wrap; padding: 14px 16px; gap: 10px; }
-    .days-label { font-size: 0.85rem; }
-    .card { padding: 22px; }
-    .card h2 { font-size: 1.15rem; }
-    .final { padding: 28px; }
-    .secret { padding: 18px; }
-    .secret-buttons { flex-direction: column; }
-    .secret-buttons button { width: 100%; }
-    .decision-content { padding: 28px; margin: 0 16px; }
-    .decision-content h2 { font-size: 1.6rem; }
-    .si-a-todo { font-size: 2rem; }
-    .suggestions-section { padding: 28px; margin: 40px auto 30px; }
-    .schedule-final { padding: 24px; }
-    .toast { max-width: 85vw; font-size: 0.88rem; padding: 12px 18px; }
-    .timer { font-size: 0.8rem; }
-  }
-
-  @media(max-width: 400px) {
-    h1 { font-size: 1.8rem; }
-    .subtitle { font-size: 1rem; }
-    .tab { font-size: 0.75rem; padding: 8px 10px; }
-    .grid { gap: 16px; }
-    .card h2 { font-size: 1.05rem; flex-wrap: wrap; gap: 6px; }
+    .list-section h2 { font-size: 0.85rem; flex-wrap: wrap; gap: 6px; }
     .card-counter { font-size: 0.72rem; padding: 3px 10px; }
   }
 </style>
@@ -1019,14 +1048,13 @@
 <body>
 <div class="bg-blobs"><div class="blob"></div><div class="blob"></div><div class="blob"></div></div>
 <div class="wrap">
-  <nav class="tabs">
-    <button class="tab active" data-tab="lista">📋 Lista oficial</button>
-    <button class="tab" data-tab="cronograma">🕐 Cronograma oficial</button>
-  </nav>
-  
   <header id="mainHeader">
     <div class="stamp" id="headerStamp">📋 LISTA OFICIAL DE ELEMENTOS</div>
     <h1 id="headerTitle">PLAN NO SECRETO<br><span>19 y 20 DE SEP</span> ⭐</h1>
+    <nav class="tabs">
+      <button class="tab active" data-tab="lista">📋 Lista oficial</button>
+      <button class="tab" data-tab="cronograma">🕐 Cronograma oficial</button>
+    </nav>
     <p class="subtitle" id="headerSubtitle">
       (documento de extrema importancia y bajo ningún concepto exageradamente elaborado)
     </p>
@@ -1048,8 +1076,8 @@
     <button id="reset">Reiniciar</button>
   </div>
 
-  <main class="grid" id="mainContent">
-    <section class="card cat-basics">
+  <main class="checklist" id="mainContent">
+    <section class="list-section cat-basics">
       <h2><span>👟 INDUMENTARIA ESENCIAL</span><span class="card-counter" data-counter>0/0</span></h2>
       <label class="item"><input type="checkbox"><span class="text">Crocs verdes (especiales, como vos) 🐊</span></label>
       <label class="item"><input type="checkbox"><span class="text">Bikini/malla <span class="text-muted">(hot, requisito no negociable)</span></span></label>
@@ -1060,7 +1088,7 @@
       <label class="item"><input type="checkbox"><span class="text">Collar de luna 🌙 <span class="text-muted">(porque la luna tiene la costumbre de hacer especial una noche común)</span></span></label>
     </section>
 
-    <section class="card cat-priority">
+    <section class="list-section cat-priority">
       <h2><span>🌸 ELEMENTOS PARTICULARMENTE IMPORTANTES</span><span class="card-counter" data-counter>0/0</span></h2>
       <label class="item"><input type="checkbox"><span class="text">Tu perfume de verano que busco en todas las flores</span></label>
       <label class="item"><input type="checkbox"><span class="text">Uñas: manos y pies 💅</span></label>
@@ -1068,7 +1096,7 @@
       <label class="item"><input type="checkbox"><span class="text">Ropa interior x2 <span class="text-muted">(se aceptan sorpresas y decisiones creativas)</span></span></label>
     </section>
 
-    <section class="card cat-extras">
+    <section class="list-section cat-extras">
       <h2><span>🧴 EXTRAS DE SUPERVIVENCIA</span><span class="card-counter" data-counter>0/0</span></h2>
       <label class="item"><input type="checkbox"><span class="text">Crema, cepillo de dientes, desodorante, peine, toalla mini, gomitas de pelo <span class="text-muted">(por si no copa lo de allá)</span></span></label>
       <label class="item"><input type="checkbox"><span class="text">0 timidez y 0 inseguridades</span></label>
@@ -1077,7 +1105,7 @@
       <label class="item"><input type="checkbox"><span class="text">Actitud de persona que no tiene absolutamente nada que hacer durante 24 horas</span></label>
     </section>
 
-    <section class="card cat-mandatory">
+    <section class="list-section cat-mandatory">
       <h2><span>🚨 OBLIGATORIO — NO OLVIDAR BAJO NINGÚN CONCEPTO</span><span class="card-counter" data-counter>0/0</span></h2>
       <label class="item"><input type="checkbox"><span class="text">DNI</span></label>
       <label class="item"><input type="checkbox"><span class="text">Celular</span></label>
@@ -1085,18 +1113,16 @@
       <label class="item"><input type="checkbox"><span class="text">Bolsa plástica <span class="text-muted">(no voy a explicar por qué, simplemente confiá)</span></span></label>
     </section>
 
-    <section class="card full cat-optional">
+    <section class="list-section cat-optional">
       <h2><span>🧳 OPCIONAL — NO HACE FALTA PERO QUIÉN SABE</span><span class="card-counter" data-counter>0/0</span></h2>
-      <div class="grid" style="padding:0; gap:16px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-        <label class="item"><input type="checkbox"><span class="text">Campera <span class="text-muted">(por si nos da frío)</span></span></label>
-        <label class="item"><input type="checkbox"><span class="text">Un pasatiempo/hobby que entre en un bolso</span></label>
-        <label class="item"><input type="checkbox"><span class="text">Botellita de agua</span></label>
-        <label class="item"><input type="checkbox"><span class="text">Ojotas</span></label>
-        <label class="item"><input type="checkbox"><span class="text">Auriculares</span></label>
-        <label class="item"><input type="checkbox"><span class="text">Rímel</span></label>
-        <label class="item"><input type="checkbox"><span class="text">Botas hot 👠 o zapas <span class="text-muted">(aunque todos queremos escuchar esos tacos sonar, es solo para la cena)</span></span></label>
-        <label class="item"><input type="checkbox"><span class="text">Ropa de vóley <span class="text-muted">(viste, yo no me rindo fácil)</span></span></label>
-      </div>
+      <label class="item"><input type="checkbox"><span class="text">Campera <span class="text-muted">(por si nos da frío)</span></span></label>
+      <label class="item"><input type="checkbox"><span class="text">Un pasatiempo/hobby que entre en un bolso</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Botellita de agua</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Ojotas</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Auriculares</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Rímel</span></label>
+      <label class="item"><input type="checkbox"><span class="text">Botas hot 👠 o zapas <span class="text-muted">(aunque todos queremos escuchar esos tacos sonar, es solo para la cena)</span></span></label>
+      <label class="item"><input type="checkbox"><span class="text">Ropa de vóley <span class="text-muted">(viste, yo no me rindo fácil)</span></span></label>
     </section>
   </main>
 
@@ -1104,7 +1130,6 @@
     <h2>📌 ACLARACIÓN FINAL DEL COMITÉ ORGANIZADOR</h2>
     <p>La lista podrá sufrir modificaciones de último momento.</p>
     <p>Pero <strong>la persona invitada es un elemento obligatorio. Su prioridad absoluta es <em>venir</em>.</strong> El resto es secundario.</p>
-    <p>Muchas gracias por su colaboración. �</p>
     <div class="secret">
       <strong>Atte.</strong><br>
       <em>Vicepresidencia de Planes No-Peligrosos™</em><br>
@@ -1127,23 +1152,28 @@
     </div>
 
     <div class="timeline">
-      <article class="time-item"><time>13:00 pm</time><div><h3>Paso a buscarte.</h3><p>Podés ser impuntual, siempre te voy a esperar (pero).</p></div></article>
-      <article class="time-item"><time>13:45 pm</time><div><h3>Almuerzo.</h3><p>Porque no podemos empezar la jornada sin comer.</p></div></article>
-      <article class="time-item"><time>15:00 pm</time><div><h3>Entrada al sector.</h3><p>Quedan suspendidas todas las responsabilidades.</p></div></article>
-      <article class="time-item"><time>17:30 pm</time><div><h3>Pileta climatizada.</h3><p>Con intenciones de que salgas haciendo nado de crol olímpico.</p></div></article>
-      <article class="time-item"><time>19:00 pm</time><div><h3>Masajes / Spa.</h3><p>Con la ilusión de que nos dejen pensando que tenemos la vida resuelta.</p></div></article>
-      <article class="time-item"><time>20:00 pm</time><div><h3>¿Tiempo libre?</h3><p>(nos ponemos lindos para la cena).</p></div></article>
-      <article class="time-item"><time>22:00 pm</time><div><h3>Cena.</h3><p>(Vale hablar de todo menos de trabajo, o solo mirarnos también sirve).</p></div></article>
-      <article class="time-item midnight"><time>00:00 am en adelante</time><div><h3>El cronograma se deja de hacer cargo de las decisiones tomadas.</h3><p>(...)</p></div></article>
-      <article class="time-item nextday"><time>Día siguiente</time><div><h3>Desayuno, recuperación de funciones vitales y evaluación de daños.</h3></div></article>
-      <article class="time-item"><time>14:00 pm</time><div><h3>Horario de regreso.</h3><p>Se procede a abandonar el establecimiento y volver a la realidad.</p></div></article>
-      <article class="time-item"><time>15:00 pm</time><div><h3>Te dejo en tu hogar, esperando seguir siendo un caballero a esta altura.</h3></div></article>
+      <article class="time-item"><time>13:00 pm</time><div><h3>Paso a buscarte.</h3><p>Podés ser impuntual, siempre te voy a esperar (pero).</p><span class="activity-icon" aria-hidden="true">🚗</span></div></article>
+      <article class="time-item"><time>13:45 pm</time><div><h3>Almuerzo.</h3><p>Porque algo tan aburrido como comer es más divertido si se hace de a dos.</p><span class="activity-icon" aria-hidden="true">🍝</span></div></article>
+      <article class="time-item"><time>15:00 pm</time><div><h3>Entrada al establecimiento.</h3><p>Quedan suspendidas todas las responsabilidades.</p><span class="activity-icon" aria-hidden="true">🏨</span></div></article>
+      <article class="time-item"><time>17:30 pm</time><div><h3>Pileta climatizada.</h3><p>Con intenciones de que salgas haciendo nado de crol olímpico.</p><span class="activity-icon" aria-hidden="true">🏊</span></div></article>
+      <article class="time-item"><time>19:00 pm</time><div><h3>Masajes / Spa.</h3><p>Con la ilusión de que nos dejen pensando que tenemos la vida resuelta.</p><span class="activity-icon" aria-hidden="true">💆</span></div></article>
+      <article class="time-item"><time>20:00 pm</time><div><h3>¿Tiempo libre?</h3><p>(nos ponemos lindos para la cena).</p><span class="activity-icon" aria-hidden="true">✨</span></div></article>
+      <article class="time-item"><time>22:00 pm</time><div><h3>Cena.</h3><p>(Vale hablar de todo menos de trabajo, o solo mirarnos también sirve).</p><span class="activity-icon" aria-hidden="true">🍷</span></div></article>
+      <article class="time-item midnight"><time>00:00 am en adelante</time><div><h3>El cronograma se deja de hacer cargo de las decisiones tomadas.</h3><p>(...)</p><span class="activity-icon" aria-hidden="true">🌙</span></div></article>
+      <article class="time-item nextday"><time>Día siguiente</time><div><h3>Desayuno, recuperación de funciones vitales y evaluación de daños.</h3><span class="activity-icon" aria-hidden="true">☕</span></div></article>
+      <article class="time-item"><time>14:00 pm</time><div><h3>Horario de regreso.</h3><p>Se procede a abandonar el establecimiento y volver a la realidad.</p><span class="activity-icon" aria-hidden="true">🧳</span></div></article>
+      <article class="time-item"><time>15:00 pm</time><div><h3>Te dejo en tu hogar, esperando seguir siendo un caballero a esta altura.</h3><span class="activity-icon" aria-hidden="true">🏠</span></div></article>
     </div>
 
     <div class="schedule-final">
-      <p>Atte.:</p>
-      <p><strong>Vicepresidencia de Planificación y Asuntos Recreativos</strong><br>
-      Departamento de Que Ojalá Todo Salga Bien</p>
+      <div class="schedule-signature">
+        <span class="schedule-signature-icon" aria-hidden="true">✦</span>
+        <div>
+          <p class="schedule-signature-label">Firma oficial</p>
+          <p><strong>Vicepresidencia de Planificación y Asuntos Recreativos</strong><br>
+          Departamento de Que Ojalá Todo Salga Bien</p>
+        </div>
+      </div>
       <p class="fineprint">(El comité organizador no se responsabiliza por el incumplimiento parcial del presente itinerario, ni por aquellas actividades que los participantes decidan realizar que, eventualmente, resulten considerablemente más entretenidas).</p>
     </div>
   </section>
@@ -1151,7 +1181,7 @@
 
 <div class="decision-modal" id="decisionModal">
   <div class="decision-content">
-    <h2>🥳 Un momento...</h2>
+    <h2>🥳 Antes que nada...</h2>
     <p>¿Confirmás tu asistencia a este plan no secreto?</p>
     <div class="si-a-todo" id="siATodo">🎉 SI A TODO 🎉</div>
     <div class="decision-buttons">
@@ -1191,7 +1221,7 @@
   const cardCounters = [...document.querySelectorAll('[data-counter]')];
   function updateCardCounters(){
     cardCounters.forEach(counter => {
-      const cardChecks = [...counter.closest('.card').querySelectorAll('input[type="checkbox"]')];
+      const cardChecks = [...counter.closest('.list-section').querySelectorAll('input[type="checkbox"]')];
       const done = cardChecks.filter(c => c.checked).length;
       counter.textContent = `${done}/${cardChecks.length}`;
     });
@@ -1211,34 +1241,34 @@
   }
 
   const itemMessages = [
-    'Siempre fueron únicas 🐊',
+    'Únicas, especiales, no cualquiera se puede vestir con ellas. 🐊',
     'De preferencia esa bordó que alguna vez ví 😏',
-    'El único momento donde no hace falta ser hot (siempre lo sos)',
+    'Te doy todos mis BTC por verte con un short y un top.',
     'Tampoco es que íbamos a dormir 😌',
     'Todos queremos ver esa cintura 🔥',
-    'Prioridad alta confirmada. Miau oficial.',
-    'Noche común convertida en especial, asentado en el Cronograma.',
-    'Buscado en todas las flores, encontrado en la Lista Oficial.',
-    'Manos y pies aprobados por decreto de la Vicepresidencia de Planes No-Peligrosos.',
-    'Nivel de peligro actualizado. El COMITÉ ORGANIZADOR recomienda precaución.',
-    'Sorpresas y decisiones creativas, registradas sin preguntas.',
-    'Por si no copa lo de allá, la planificación cuestionable ya lo previó.',
-    'Certificado por la Vicepresidencia de Planes No-Peligrosos: apto para todo.',
-    'El COMITÉ ORGANIZADOR no se hace responsable del menú completo.',
-    'Autorizado. La Lista Oficial recomienda soltar el celular.',
-    '24 horas de no hacer nada, oficialmente aprobadas.',
-    'Identidad verificada. El Cronograma puede proceder.',
-    'Registrado, aunque la idea es usarlo lo menos posible.',
-    'Sin batería no hay planificación cuestionable que valga.',
-    'No se explica por qué. El COMITÉ ORGANIZADOR simplemente confía.',
-    'Por si nos da frío, la Vicepresidencia de Planes No-Peligrosos lo tiene cubierto.',
-    'Que entre en el bolso y en el Cronograma.',
-    'Hidratación aprobada por la Lista Oficial.',
-    'Registradas. Nivel de comodidad óptimo, según el COMITÉ ORGANIZADOR.',
-    'Sonido asegurado, planificación cuestionable como siempre.',
-    'Belleza opcional, pero anotada igual en la Lista Oficial.',
-    'Los tacos suenan bajo estricta supervisión del COMITÉ ORGANIZADOR.',
-    'No te rendís fácil, y eso queda en el Cronograma oficial.'
+    'Prioridad alta confirmada. Miau oficial. 🐱',
+    'Porque siempre que miro al cielo busco a la luna. 🌙',
+    'Por suerte ya sé dónde encontrarlo. 🌸',
+    'No le echemos la culpa a Kiwi después. 💅',
+    'Perdón si no te dura mucho. 💋',
+    'Sorpresas y decisiones creativas, registradas sin preguntas. 👙',
+    'Por si no copa lo de allá, la planificación cuestionable ya lo previó. 🧴',
+    'SI A TODO. ✨',
+    'El COMITÉ ORGANIZADOR no se hace responsable del menú completo. 🍔',
+    'Si querés solo nos divertimos. 🎉',
+    '24 horas de no hacer nada, oficialmente aprobadas. 🛋️',
+    'Por si hacía falta algo más para que te des cuenta de que sos única. 🪪',
+    'Aunque sea iPhone y no soporte Stremio. 📱',
+    'Tenés que avisarle a tu mamá que no te secuestré (completamente). 🔌',
+    'No se explica por qué. El COMITÉ ORGANIZADOR simplemente confía. 👜',
+    'APTA CAPUCHA. 🧥',
+    'Ojo, capaz podemos jugar a las cartas de verdad. 🃏',
+    'No queremos que tengas tanta sed. 💧',
+    'Bueno, acá me quedé sin creatividad. 🩴',
+    'Por si te cansás de escucharme en el viaje. 🎧',
+    'Esas pestañas tienen que resistir. 👁️',
+    'No te iban a durar mucho puestas, la verdad. 👠',
+    'Porque hasta no verte loqueada de mi central favorita no paro. 🏐'
   ];
 
   checks.forEach((c, i) => {
@@ -1431,15 +1461,6 @@
   acceptBtn.addEventListener('click', () => {
     localStorage.setItem('planAccepted', 'true');
     playClickSound();
-    decisionModal.classList.remove('show');
-    hasAccepted = true;
-  });
-
-  rejectBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    playClickSound();
-    rejectBtn.disabled = true;
-    rejectBtn.textContent = '✗ No podés rechazar';
     document.getElementById('siATodo').classList.add('show');
     const siColors = ['#ff6f91', '#9b7ede', '#74b49b', '#ffd166'];
     for(let i=0; i<40; i++){
@@ -1452,6 +1473,18 @@
       document.body.appendChild(x);
       setTimeout(() => x.remove(), 2500);
     }
+    setTimeout(() => {
+      decisionModal.classList.remove('show');
+      document.getElementById('siATodo').classList.remove('show');
+    }, 1200);
+    hasAccepted = true;
+  });
+
+  rejectBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    playClickSound();
+    rejectBtn.disabled = true;
+    rejectBtn.textContent = '✗ No podés rechazar';
 
     setTimeout(() => {
       rejectBtn.disabled = false;
@@ -1459,7 +1492,6 @@
       rejectBtn.style.position = 'absolute';
       rejectBtn.style.left = Math.random() * (window.innerWidth - 120) + 'px';
       rejectBtn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
-      document.getElementById('siATodo').classList.remove('show');
     }, 1500);
   });
 
@@ -1469,7 +1501,11 @@
     const isSchedule = tab.dataset.tab === 'cronograma';
     
     // Mostrar/ocultar elementos según la pestaña
-    mainHeader.hidden = isSchedule;
+    headerStamp.hidden = isSchedule;
+    headerTitle.hidden = isSchedule;
+    headerSubtitle.hidden = isSchedule;
+    confessionBtn.hidden = isSchedule;
+    confessionMsg.hidden = isSchedule;
     mainContent.hidden = isSchedule;
     dashboard.hidden = isSchedule;
     daysBar.hidden = isSchedule;
