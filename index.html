@@ -1339,6 +1339,156 @@
     border-radius: 14px;
   }
 
+  .hot-playlist {
+    position: relative;
+    max-width: 850px;
+    margin: 42px auto 0;
+    padding: 30px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #332a36, #5a304b 58%, #6c3d62);
+    border: 1px solid rgba(255, 159, 186, 0.3);
+    border-radius: 28px;
+    box-shadow: 0 24px 45px rgba(65, 40, 55, 0.2);
+    color: #fff;
+  }
+
+  .hot-playlist:after {
+    content: "✦  ·  ✦";
+    position: absolute;
+    right: 20px;
+    top: 8px;
+    color: rgba(255, 214, 225, 0.18);
+    font-size: 4rem;
+    letter-spacing: 0.15em;
+    transform: rotate(8deg);
+    pointer-events: none;
+  }
+
+  .hot-playlist-heading {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .hot-playlist h3 {
+    margin: 0;
+    color: #ffe0e8;
+    font-size: 1.35rem;
+  }
+
+  .hot-playlist-badge {
+    flex: 0 0 auto;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 214, 225, 0.4);
+    border-radius: 999px;
+    color: #ffd6e1;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hot-playlist-toggle {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    min-width: 164px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 214, 225, 0.55);
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff1f5;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 6px 16px rgba(20, 12, 22, 0.12);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .hot-playlist-toggle:hover {
+    background: rgba(255, 214, 225, 0.2);
+    border-color: rgba(255, 224, 232, 0.8);
+    transform: translateY(-2px);
+  }
+
+  .hot-playlist-toggle:after {
+    content: "↓";
+    display: inline-block;
+    margin-left: 7px;
+    font-size: 1.05rem;
+    line-height: 0.8;
+    transition: transform 0.25s ease;
+  }
+
+  .hot-playlist.is-open .hot-playlist-toggle:after {
+    content: "↑";
+    transform: none;
+  }
+
+  .hot-playlist-content {
+    display: none;
+  }
+
+  .hot-playlist.is-open .hot-playlist-content {
+    display: block;
+    animation: confessionPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .hot-playlist p {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 18px;
+    color: #ead9e1;
+    font-size: 0.95rem;
+  }
+
+  .hot-playlist iframe {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: 16px;
+  }
+
+  .hot-player {
+    position: relative;
+    z-index: 1;
+    padding: 10px;
+    border: 1px solid rgba(255, 214, 225, 0.18);
+    border-radius: 20px;
+    background: rgba(24, 18, 27, 0.42);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 14px 28px rgba(20, 12, 22, 0.2);
+  }
+
+  .hot-player-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 8px 9px;
+    color: rgba(255, 224, 232, 0.72);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hot-player-label:before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ff9fba;
+    box-shadow: 0 0 0 4px rgba(255, 159, 186, 0.12);
+  }
+
   .midnight > div {
     background: linear-gradient(135deg, #332a36, #48394a);
     color: #fff;
@@ -1437,6 +1587,8 @@
     .playlist-hero h2 { font-size: 2rem; }
     .playlist-hero p { font-size: 0.95rem; }
     .playlist-grid { grid-template-columns: 1fr; gap: 14px; }
+    .hot-playlist { padding: 22px; border-radius: 24px; }
+    .hot-playlist-heading { align-items: flex-start; flex-direction: column; gap: 10px; }
     .schedule-hero { padding: 32px 22px 28px; border-radius: 24px; }
     .schedule-hero h2 { font-size: 2rem; }
     .schedule-hero p { font-size: 0.95rem; }
@@ -1632,6 +1784,20 @@
       <article class="track-card"><span class="track-number">Pista 23</span><iframe src="https://open.spotify.com/embed/track/5XeFesFbtLpXzIVDNQP22n?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 23"></iframe></article>
       <article class="track-card"><span class="track-number">Pista 24</span><iframe src="https://open.spotify.com/embed/track/3JCian69xIfy8A4799Og5f?utm_source=generator" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pista 24"></iframe></article>
     </div>
+
+    <section class="hot-playlist" aria-labelledby="hotPlaylistTitle">
+      <div class="hot-playlist-heading">
+        <h3 id="hotPlaylistTitle">🔥 Zona de peligro</h3>
+        <button class="hot-playlist-toggle" id="hotPlaylistToggle" aria-expanded="false" aria-controls="hotPlaylistContent">Acceso reservado</button>
+      </div>
+      <div class="hot-playlist-content" id="hotPlaylistContent">
+        <p>Porque tal vez prefiero un poco más escuchar esto cuando pienso en vos.</p>
+        <div class="hot-player">
+          <div class="hot-player-label">Reproducción reservada</div>
+          <iframe src="https://open.spotify.com/embed/playlist/3Wjqfids3NtYuMgPAJoau8?utm_source=generator" height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Playlist Zona de peligro"></iframe>
+        </div>
+      </div>
+    </section>
   </section>
 </div>
 
@@ -1700,6 +1866,14 @@
   playlistConfessionBtn?.addEventListener('click', () => {
     playClickSound();
     playlistNote.classList.toggle('show');
+  });
+
+  const hotPlaylist = document.querySelector('.hot-playlist');
+  const hotPlaylistToggle = document.getElementById('hotPlaylistToggle');
+  hotPlaylistToggle?.addEventListener('click', () => {
+    playClickSound();
+    const isOpen = hotPlaylist.classList.toggle('is-open');
+    hotPlaylistToggle.setAttribute('aria-expanded', String(isOpen));
   });
 
   totalEl.textContent = checks.length;
@@ -2019,7 +2193,7 @@
     playClickSound();
     const tabMessages = tab.dataset.tab === 'playlist' ? [
       'Playlist Oficial cargada. La banda sonora del plan queda oficialmente desclasificada.',
-      '21 canciones para acompañar decisiones de dudosa responsabilidad.',
+      '24 canciones para acompañar decisiones de dudosa responsabilidad.',
       'El COMITÉ ORGANIZADOR recomienda darle play.'
     ] : isSchedule ? [
       'Acceso concedido al Cronograma. El COMITÉ ORGANIZADOR observa.',
